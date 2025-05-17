@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, ParseIntPipe } from '@nestjs/common';
 import { LoanService } from './loan.service';
+import { MakeRepaymentDto } from './dto/make-repayment.dto';
+import { Repayment } from './entities/repayment.entity';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
 import { AuthGuard } from '@nestjs/passport';
