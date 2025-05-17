@@ -2,6 +2,9 @@ import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/commo
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { Roles } from 'src/decorators/role.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { Role } from 'src/entities';
 
 @Controller('accounts')
 export class AccountsController {
@@ -27,6 +30,8 @@ export class AccountsController {
     return this.accountsService.update(id, updateAccountDto);
   }
 
+  @ApiBearerAuth()
+  @Roles(Role.User)
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.accountsService.remove(id);
